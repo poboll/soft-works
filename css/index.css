@@ -1,0 +1,132 @@
+/* 全局设置 */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f9f7f7; /* 淡灰白色背景 */
+    color: #333; /* 默认文字颜色 */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* 容器样式 */
+.container {
+    background: #ffffff; /* 白色背景 */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px 30px;
+    max-width: 500px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 标题样式 */
+h1 {
+    text-align: center;
+    color: #3f72af; /* 蓝色标题 */
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* 行样式 */
+.line {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* 输入框样式 */
+input[type="text"] {
+    flex-grow: 1;
+    padding: 8px 10px;
+    font-size: 16px;
+    border: 1px solid #dbe2ef; /* 淡蓝色边框 */
+    border-radius: 4px;
+    margin-left: 10px;
+    background-color: #dbe2ef; /* 淡蓝色背景 */
+    color: #333;
+}
+
+/* 提示信息 */
+.hint {
+    font-size: 12px;
+    color: #888;
+    margin-left: 10px;
+}
+
+/* 按钮样式 */
+.button, .primary-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* 普通按钮 */
+.button {
+    background-color: #dbe2ef; /* 淡蓝色按钮背景 */
+    color: #333;
+}
+
+.button:hover {
+    background-color: #3f72af; /* 深蓝色 hover 效果 */
+    color: #fff;
+}
+
+/* 主要按钮样式 */
+.primary-button {
+    background-color: #3f72af; /* 蓝色背景 */
+    color: #fff;
+    width: 100%;
+    text-align: center;
+}
+
+.primary-button:hover {
+    background-color: #112d4e; /* 更深蓝色 hover 效果 */
+}
+
+/* 开关样式 */
+.toggle {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* 信息框样式 */
+.info-box {
+    margin-top: 20px;
+    padding: 10px;
+    background: #dbe2ef; /* 淡蓝色背景 */
+    border: 1px solid #3f72af; /* 蓝色边框 */
+    border-radius: 4px;
+    color: #333;
+    display: none; /* 默认隐藏 */
+    height: 130px; /* 设置固定高度 */
+    overflow-y: auto; /* 超出部分显示滚动条 */
+    transition: opacity 0.3s ease-out;
+    opacity: 0; /* 默认隐藏 */
+}
+
+/* 过渡动画 */
+.line, .buttonline {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.5s forwards;
+}
+
+.line:nth-child(1) { animation-delay: 0.1s; }
+.line:nth-child(2) { animation-delay: 0.2s; }
+.line:nth-child(3) { animation-delay: 0.3s; }
+.line:nth-child(4) { animation-delay: 0.4s; }
+.buttonline { animation-delay: 0.5s; }
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

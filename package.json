@@ -1,0 +1,49 @@
+{
+  "name": "soft-works",
+  "version": "1.0.0",
+  "description": "软件著作权助手，用于帮助程序员申请软件著作权统计代码相关的信息。",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "max-dist": "electron-builder --win --mac --linux"
+  },
+  "author": {
+    "name": "poboll",
+    "email": "caiths@icloud.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^11.5.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.caiths.softwarehelper",
+    "productName": "软著助手",
+    "files": [
+      "**/*"
+    ],
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": [
+        "nsis"
+      ]
+    },
+    "mac": {
+      "icon": "assets/icon.icns",
+      "identity": null,
+      "category": "public.app-category.developer-tools",
+      "target": [
+        "dmg"
+      ]
+    },
+    "linux": {
+      "icon": "assets/icon.png",
+      "maintainer": "caiths@icloud.com",
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    }
+  }
+}

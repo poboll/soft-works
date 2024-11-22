@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>软件著作权助手</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+
+        /* 添加标注样式 */
+        .footer {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            font-size: 14px;
+            color: #6b6b6b;  /* 深灰色 */
+            background-color: #ffffff; /* 白色背景 */
+            padding: 5px 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Roboto', Arial, sans-serif;
+            z-index: 999;
+        }
+
+        .footer a {
+            color: #3f72af; /* 深绿色链接 */
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline; /* 悬停效果 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>软件著作权助手</h1>
+        <div class="line">
+            <label for="inp_extensions">代码文件扩展名：</label>
+            <input id="inp_extensions" type="text" placeholder="例如：.ts,.js">
+            <span class="hint">（多个扩展名请用英文逗号分隔）</span>
+        </div>
+        <div class="line">
+            <label for="tog_excludeblankline">是否排除空行：</label>
+            <input id="tog_excludeblankline" class="toggle" type="checkbox">
+        </div>
+        <div class="line">
+            <label for="btn_selectrootdir">项目代码根目录：</label>
+            <input id="btn_selectrootdir" class="button" type="button" value="选择">
+        </div>
+        <div class="line">
+            <label for="tog_mergecode">合并代码到一个文件：</label>
+            <input id="tog_mergecode" class="toggle" type="checkbox" checked>
+        </div>
+        <div class="buttonline">
+            <input id="btn_execute" type="button" class="primary-button" value="选择输出目录并执行任务">
+        </div>
+        <div id="lab_infos" class="info-box"></div>
+    </div>
+
+    <div class="footer">
+        软著助手 @ 在虎 GitHub <a href="https://github.com/poboll" target="_blank">poboll</a>
+    </div>
+
+    <script src="src/index.js"></script>
+</body>
+</html>

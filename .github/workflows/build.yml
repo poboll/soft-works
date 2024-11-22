@@ -1,0 +1,36 @@
+name: Build Electron App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest  # 指定在 macOS 上构建
+    strategy:
+      matrix:
+        platform: [win, mac, linux]  # 自动为三种平台打包
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Build for Windows
+        if: matrix.platform == 'win'
+        run: npm run dist --win
+      
+      - name: Build for macOS
+        if: matrix.platform == 'mac'
+        run: npm run dist --mac
+      
+      - name: Build for Linux
+        if: matrix.platform == 'linux'
+        run: npm run dist --linux
