@@ -4,42 +4,50 @@ on:
   push:
     branches:
       - main
+    tags:
+      - 'v*'  # 监听标签推送事件（以 "v" 开头的标签）
 
 jobs:
   build:
-    runs-on: macos-latest  # 指定在 macOS 上构建
+    runs-on: macos-latest  # 构建环境
     strategy:
       matrix:
-        platform: [win, mac, linux]  # 自动为三种平台打包
+        platform: [win, mac, linux]  # 定义三种平台
     steps:
+      # Step 1: 检出代码
       - name: Checkout code
-        uses: actions/checkout@v2
-      
+        uses: actions/checkout@v3
+
+      # Step 2: 设置 Node.js 环境
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'
-      
+          node-version: '20'  # 使用最新的 LTS 版本
+
+      # Step 3: 安装依赖
       - name: Install dependencies
         run: npm install
-      
+
+      # Step 4: 设置 GitHub Token
       - name: Set up GitHub Token
         run: echo "GH_TOKEN=${{ secrets.GH_TOKEN }}" >> $GITHUB_ENV
 
+      # Step 5: 按平台构建
       - name: Build for Windows
         if: matrix.platform == 'win'
         run: npm run dist --win
-      
+
       - name: Build for macOS
         if: matrix.platform == 'mac'
         run: npm run dist --mac
-      
+
       - name: Build for Linux
         if: matrix.platform == 'linux'
         run: npm run dist --linux
 
+      # Step 6: 发布构建成果
       - name: Create Release
-        if: success()
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')  # 检查是否基于标签构建
         uses: softprops/action-gh-release@v1
         with:
           files: |
@@ -47,4 +55,4 @@ jobs:
             dist/*.exe
             dist/*.deb
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # 使用 GitHub Token 进行认证
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # 认证使用 GitHub Token
